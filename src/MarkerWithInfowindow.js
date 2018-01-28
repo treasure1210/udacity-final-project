@@ -4,7 +4,6 @@ import { Marker, InfoWindow } from 'react-google-maps';
 class MarkerWithInfowindow extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props.marker);
         this.state = {
             marker: this.props.marker,
             isOpen: false,
