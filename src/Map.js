@@ -1,6 +1,5 @@
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps"
-import MarkerWithInfowindow from './MarkerWithInfowindow';
+import { compose, withProps, withStateHandlers } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import React from 'react'
 
 export const MyMapComponent = compose(
@@ -9,6 +8,13 @@ export const MyMapComponent = compose(
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `100vh` }} />,
         mapElement: <div style={{ height: `100%` }} />,
+    }),
+    withStateHandlers(() => ({
+        activeMarker: null,
+        }), {
+        onToggleOpen: ({ activeMarker }) => (marker) => ({
+            activeMarker: marker,
+        })
     }),
     withScriptjs,
     withGoogleMap
@@ -45,10 +51,20 @@ export const MyMapComponent = compose(
             }}
         >
         {markers.map(marker => (
-            <MarkerWithInfowindow
+            <Marker
                 key={marker.name}
-                marker={marker}
-            />
+                position={marker.location}
+                onClick={() => {
+                    console.log(marker);
+                    props.onToggleOpen(this);
+                }}
+            >
+                {props.activeMarker && <InfoWindow
+                    onCloseClick={() => props.onToggleOpen(null)}
+                >
+                    <div>{marker.name}</div>
+                </InfoWindow>}
+            </Marker>
         ))}
         </GoogleMap>
     )
