@@ -60,7 +60,6 @@ class PlacesInfoComponent extends Component {
                 location: new this.google.maps.LatLng(nextProps.activeMarker.location.lat, nextProps.activeMarker.location.lng),
             },
         })
-        console.log(this.state.activeMarker);
         this.displayStreetView();
     }
 
