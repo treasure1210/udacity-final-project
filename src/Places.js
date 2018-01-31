@@ -23,7 +23,7 @@ class PlacesInfoComponent extends Component {
                 position: nearStreetViewLocation,
                 pov: {
                 heading: heading,
-                pitch: 30
+                pitch: 20
                 }
             };
             var panorama = new this.google.maps.StreetViewPanorama(document.getElementById('streetview'), panoramaOptions);
@@ -67,7 +67,7 @@ class PlacesInfoComponent extends Component {
         return (
             <div>
                 {this.state.activeMarker.name}
-                <div id="streetview" style={{height: '200px'}}></div>
+                <div id="streetview" style={{height: '200px', width: '200px'}}></div>
             </div>
         );
     }
