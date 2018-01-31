@@ -39,8 +39,9 @@ export const MyMapComponent = compose(
         onToggleOpen: ({ activeMarker }) => (marker) => ({
             activeMarker: marker,
         }),
-        filterList: ({filteredMarkers}) => markers => ({
+        filterList: ({filteredMarkers, activeMarker}) => markers => ({
             filteredMarkers: markers,
+            activeMarker: null,
         })
     }),
     withGoogleMap

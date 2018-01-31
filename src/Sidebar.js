@@ -25,7 +25,7 @@ class SidebarComponent extends Component {
     render() {
         return (
         <div className="Sidebar">
-            <input type="text" onChange={this.filterList}/>
+            <input type="text" placeholder="Filter locations" onChange={this.filterList}/>
             {this.state.filteredMarkers.map(marker => (
                 <li 
                 key={marker.name}
