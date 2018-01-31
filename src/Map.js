@@ -1,6 +1,7 @@
 import { compose, withProps, withStateHandlers } from "recompose"
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import React from 'react'
+import PlacesInfoComponent from './Places'
 import SidebarComponent from './Sidebar'
 
 export const MyMapComponent = compose(
@@ -48,6 +49,7 @@ export const MyMapComponent = compose(
 )((props) => {
     const google = props.google;
 
+    
 
     const clickList = marker => {
         props.onToggleOpen(marker);
@@ -81,7 +83,10 @@ export const MyMapComponent = compose(
                     options={{pixelOffset: new google.maps.Size(0, -35)}}
                     onCloseClick={() => props.onToggleOpen(null)}
                 >
-                    <div>{props.activeMarker.name}</div>
+                    <PlacesInfoComponent
+                        activeMarker={props.activeMarker}
+                        google={google}
+                    />
                 </InfoWindow>}
             </GoogleMap>
         </div>
