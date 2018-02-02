@@ -22,18 +22,29 @@ class SidebarComponent extends Component {
         this.props.filter(filteredMarkers);
     }
 
+    handleKeyPress(marker, event) {
+        if(event.key === 'Enter' || event.key === ' ') {
+            this.props.callback(marker);
+        }
+    }
+
     render() {
         return (
         <div className="Sidebar">
             <input type="text" placeholder="Filter locations" onChange={this.filterList}/>
+            <ul>
             {this.state.filteredMarkers.map(marker => (
                 <li 
                 key={marker.name}
                 onClick={() => this.props.callback(marker)}
+                onKeyPress={this.handleKeyPress.bind(this, marker)}
+                tabIndex={0}
+                role="button"
                 >
                     {marker.name}
                 </li>
             ))}
+            </ul>
         </div>
         );
     }

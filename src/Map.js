@@ -41,6 +41,7 @@ export const MyMapComponent = compose(
                 id: "16th-street-mall-denver-3"
             }
         ],
+        markerOpen: false
         }), {
         onToggleOpen: ({ activeMarker }) => (marker) => ({
             activeMarker: marker,
@@ -48,6 +49,9 @@ export const MyMapComponent = compose(
         filterList: ({filteredMarkers, activeMarker}) => markers => ({
             filteredMarkers: markers,
             activeMarker: null,
+        }),
+        setMarkerOpen: ({markerOpen}) => () => ({
+            markerOpen: !markerOpen
         })
     }),
     withGoogleMap
@@ -57,7 +61,13 @@ export const MyMapComponent = compose(
     
 
     const clickList = marker => {
-        props.onToggleOpen(marker);
+        if (props.markerOpen === false) {
+            props.onToggleOpen(marker);
+            props.setMarkerOpen();
+        } else {
+            props.onToggleOpen(null);
+            props.setMarkerOpen();
+        }
     } 
 
     return (
@@ -66,6 +76,8 @@ export const MyMapComponent = compose(
                 markers={props.filteredMarkers}
                 callback={clickList}
                 filter={props.filterList}
+                markerOpen={props.markerOpen}
+                setMarkerOpen={props.setMarkerOpen}
             />
             <GoogleMap
                 defaultZoom={14}
@@ -79,14 +91,20 @@ export const MyMapComponent = compose(
                         key={marker.name}
                         position={marker.location}
                         onClick={() => {
-                            props.onToggleOpen(marker);
+                            if(props.markerOpen === false) {
+                                props.onToggleOpen(marker);
+                                props.setMarkerOpen();
+                            }
                         }}
                     ></Marker>
                 ))}
                 {props.activeMarker && <InfoWindow
                     position={props.activeMarker.location}
                     options={{pixelOffset: new google.maps.Size(0, -35)}}
-                    onCloseClick={() => props.onToggleOpen(null)}
+                    onCloseClick={() => {
+                        props.onToggleOpen(null);
+                        props.setMarkerOpen();
+                    }}
                 >
                     <PlacesInfoComponent
                         activeMarker={props.activeMarker}

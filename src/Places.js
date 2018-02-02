@@ -69,7 +69,7 @@ class PlacesInfoComponent extends Component {
     render() {
         return (
             <div>
-                {this.state.activeMarker.name}
+                <p id="infowindowTitle" tabIndex={0}>{this.state.activeMarker.name}</p>
                 <div id="streetview" style={{height: '200px', width: '200px'}}></div>
                 <YelpComponent
                     activeMarker={this.state.activeMarker}

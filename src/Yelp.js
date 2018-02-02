@@ -20,7 +20,9 @@ class YelpComponent extends Component {
                 this.setState({
                     yelpReviews: data,
                 });
-                this.getYelpStars(this.state.yelpReviews.rating)
+                if(this.state.yelpReviews) {
+                    this.getYelpStars(this.state.yelpReviews.rating);
+                }
             })
         });
     }
@@ -61,16 +63,16 @@ class YelpComponent extends Component {
             return '';
         } else {
             const logo = require('./Yelp_trademark_RGB_outline.png');
-            return (<a href={this.state.yelpUrl}><img className="yelp-logo" src={logo} alt="Yelp logo"/></a>);
+            return (<a href={this.state.yelpUrl} tabIndex={0} aria-label="Visit this page on Yelp"><img className="yelp-logo" src={logo} alt="Yelp logo"/></a>);
         }
     }
 
     render() {
         return (
             <div className="Yelp">
-                <img src={this.state.yelpStars} alt={this.getAlt(this.state.yelpReviews)}/>
+                <img src={this.state.yelpStars} alt={this.getAlt(this.state.yelpReviews)} tabIndex={0}/>
                 <div className="reviews">
-                    <p>{this.getReviews(this.state.yelpReviews)}{this.getUrl(this.state.yelpReviews)}</p>
+                    <p tabIndex={0}>{this.getReviews(this.state.yelpReviews)}{this.getUrl(this.state.yelpReviews)}</p>
                 </div>
             </div>
         );
