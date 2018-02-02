@@ -18,22 +18,27 @@ export const MyMapComponent = compose(
             {
                 name: 'Civic Center Park',
                 location: {lat: 39.739319, lng: -104.988937},
+                id: "civic-center-park-denver"
             },
             {
                 name: 'Voodoo Donuts Mile High',
                 location: {lat: 39.7399, lng: -104.9692},
+                id: "voodoo-doughnut-denver"
             },
             {
                 name: 'Denver Art Museum',
                 location: {lat: 39.7372, lng: -104.9893},
+                id: "denver-art-museum-denver-2"
             },
             {
                 name: 'Great Divide Brewing',
                 location: {lat: 39.7538, lng: -104.9885},
+                id: "great-divide-brewing-company-denver"
             },
             {
                 name: '16th Street Mall',
                 location: {lat: 39.7478, lng: -104.9949},
+                id: "16th-street-mall-denver-3"
             }
         ],
         }), {

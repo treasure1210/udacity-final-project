@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import YelpComponent from './Yelp';
 import './App.css';
 
 class PlacesInfoComponent extends Component {
@@ -44,6 +45,7 @@ class PlacesInfoComponent extends Component {
             activeMarker: {
                 name: this.state.activeMarker.name,
                 location: new this.google.maps.LatLng(this.state.activeMarker.location.lat, this.state.activeMarker.location.lng),
+                id: this.state.activeMarker.id,
             },
             streetViewService: new this.google.maps.StreetViewService(),
         });
@@ -58,6 +60,7 @@ class PlacesInfoComponent extends Component {
             activeMarker: {
                 name: nextProps.activeMarker.name,
                 location: new this.google.maps.LatLng(nextProps.activeMarker.location.lat, nextProps.activeMarker.location.lng),
+                id: this.state.activeMarker.id
             },
         })
         this.displayStreetView();
@@ -68,6 +71,9 @@ class PlacesInfoComponent extends Component {
             <div>
                 {this.state.activeMarker.name}
                 <div id="streetview" style={{height: '200px', width: '200px'}}></div>
+                <YelpComponent
+                    activeMarker={this.state.activeMarker}
+                />
             </div>
         );
     }
