@@ -15,7 +15,7 @@ class YelpComponent extends Component {
     componentDidMount() {
         const api = "http://192.168.1.127:4000/YelpAPI.php"
         
-        fetch(`${api}`, {method: 'POST', body: JSON.stringify(`${this.state.activeMarker.id}`)}).then(res => {
+        fetch(`${api}`, {method: 'POST', body: JSON.stringify(`${this.state.activeMarker.name}`)}).then(res => {
             res.json().then(data => {
                 this.setState({
                     yelpReviews: data,
@@ -23,7 +23,7 @@ class YelpComponent extends Component {
                 if(this.state.yelpReviews) {
                     this.getYelpStars(this.state.yelpReviews.rating);
                 }
-            })
+            });
         });
     }
 
@@ -52,7 +52,7 @@ class YelpComponent extends Component {
 
     getReviews(reviews) {
         if (reviews === null) {
-            return 'Yelp data loading';
+            return 'Yelp data unavailable';
         } else {
             return `${reviews.review_count} Reviews | `;
         }
@@ -70,7 +70,7 @@ class YelpComponent extends Component {
     render() {
         return (
             <div className="Yelp">
-                <img src={this.state.yelpStars} alt={this.getAlt(this.state.yelpReviews)} tabIndex={0}/>
+                <img className="yelp-stars" src={this.state.yelpStars} alt={this.getAlt(this.state.yelpReviews)} tabIndex={0}/>
                 <div className="reviews">
                     <p tabIndex={0}>{this.getReviews(this.state.yelpReviews)}{this.getUrl(this.state.yelpReviews)}</p>
                 </div>

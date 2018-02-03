@@ -44,7 +44,7 @@ class PlacesInfoComponent extends Component {
         this.setState({
             activeMarker: {
                 name: this.state.activeMarker.name,
-                location: new this.google.maps.LatLng(this.state.activeMarker.location.lat, this.state.activeMarker.location.lng),
+                location: this.state.activeMarker.position,
                 id: this.state.activeMarker.id,
             },
             streetViewService: new this.google.maps.StreetViewService(),
@@ -59,7 +59,7 @@ class PlacesInfoComponent extends Component {
         this.setState({
             activeMarker: {
                 name: nextProps.activeMarker.name,
-                location: new this.google.maps.LatLng(nextProps.activeMarker.location.lat, nextProps.activeMarker.location.lng),
+                location: nextProps.activeMarker.position,
                 id: this.state.activeMarker.id
             },
         })

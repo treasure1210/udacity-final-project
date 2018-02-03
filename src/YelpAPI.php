@@ -1,6 +1,21 @@
 <?php
   $postdata = file_get_contents("php://input");
   $request = json_decode($postdata);
+  if ($request === "Great Divide Brewing") {
+    $request = 'great-divide-brewing-company-denver';
+  }
+  if ($request === 'Denver Art Museum') {
+    $request = 'denver-art-museum-denver-2';
+  }
+  if ($request === 'Voodoo Donuts Mile High') {
+    $request = 'voodoo-doughnut-denver';
+  }
+  if ($request === 'Civic Center Park') {
+    $request = 'civic-center-park-denver';
+  }
+  if ($request === '16th Street Mall') {
+    $request = '16th-street-mall-denver-3';
+  }
 
   function get_data($url) {
     $ch = curl_init();
