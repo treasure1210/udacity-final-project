@@ -13,7 +13,7 @@ class YelpComponent extends Component {
     }
 
     componentDidMount() {
-        const api = "http://192.168.1.127:4000/YelpAPI.php"
+        const api = "http://localhost:4000/YelpAPI.php"
         
         fetch(`${api}`, {method: 'POST', body: JSON.stringify(`${this.state.activeMarker.name}`)}).then(res => {
             res.json().then(data => {
